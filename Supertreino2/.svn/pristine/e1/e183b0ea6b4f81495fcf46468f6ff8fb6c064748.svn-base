@@ -1,0 +1,132 @@
+package br.ufba.matc89;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import br.ufba.matc89.controller.AlimentoController;
+import br.ufba.matc89.model.Alimento;
+
+public class DietaAddActivity extends Activity {
+	private static List<Alimento> alimentos = new ArrayList<Alimento>();  
+	private List<Alimento> tabelaAlimentos = new ArrayList<Alimento>();
+	TableLayout tLayout;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		try{
+		setContentView(R.layout.activity_dieta_add);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		initDietas();
+		
+		final EditText qnt = (EditText)findViewById(R.id.etQnt);
+		 
+		qnt.setOnClickListener(
+				new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						//if(qnt.getText().equals(findViewById(R.string.txtQnt).toString())){
+							qnt.setText("");
+						//}						
+					}
+				});
+		final ImageButton imgAdd = (ImageButton)findViewById(R.id.imgAdd);
+		final Spinner viewAlimentos = (Spinner) findViewById(R.id.cbAlimentos);
+		
+		tLayout = (TableLayout) findViewById(R.id.tlAlimentos);
+		
+		
+		imgAdd.setOnClickListener(
+				new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Alimento a = alimentos.get(viewAlimentos.getSelectedItemPosition());
+						showAlimentoInTable(a);
+						
+					}
+				});
+				
+		
+//		findViewById(R.id.btHome).setOnClickListener(
+//				new View.OnClickListener() {
+//					@Override
+//					public void onClick(View view) {
+//						
+//						openTelaPrincipal();						
+//					}
+//				});
+		
+		
+	}
+		
+	private void initDietas(){
+		AlimentoController alimentoC = new AlimentoController();
+		alimentos = alimentoC.getList(null, this);
+		
+		ArrayAdapter<Alimento> adp = new ArrayAdapter<Alimento>(this,android.R.layout.simple_dropdown_item_1line, alimentos);
+		Spinner viewAlimentos = (Spinner) findViewById(R.id.cbAlimentos);
+		viewAlimentos.setAdapter(adp);
+	}
+	
+	private void showAlimentoInTable(Alimento a){
+	   tabelaAlimentos.add(a);
+              
+        for(int i = 0; i < tabelaAlimentos.size(); i++){
+        	TableRow tr = new TableRow(this);
+        	tr.setId(100+i);
+        	tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	
+        	TextView nomeAlimento = new TextView(this);
+        	nomeAlimento.setId(200+i);
+        	nomeAlimento.setText(tabelaAlimentos.get(i).getNome());
+        	nomeAlimento.setTextColor(Color.BLACK);
+        	nomeAlimento.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	
+        	tr.addView(nomeAlimento);
+        	
+        	TextView fonteAlimento = new TextView(this);
+        	fonteAlimento.setId(200+i);
+        	fonteAlimento.setText(tabelaAlimentos.get(i).getFonte());
+        	fonteAlimento.setTextColor(Color.BLACK);
+        	fonteAlimento.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	
+        	tr.addView(fonteAlimento);
+        	
+        	TextView choAlimento = new TextView(this);
+        	choAlimento.setId(200+i);
+        	choAlimento.setText(tabelaAlimentos.get(i).getCarboidrato().toString());
+        	choAlimento.setTextColor(Color.BLACK);
+        	choAlimento.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	
+        	tr.addView(choAlimento);
+        	
+        	TextView ptnAlimento = new TextView(this);
+        	ptnAlimento.setId(200+i);
+        	ptnAlimento.setText(tabelaAlimentos.get(i).getProteina().toString());
+        	ptnAlimento.setTextColor(Color.BLACK);
+        	ptnAlimento.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        	
+        	tr.addView(ptnAlimento);
+        	
+        	 tLayout.addView(tr, new  TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+        			 TableLayout.LayoutParams.WRAP_CONTENT));
+        	 
+        	 tLayout.requestLayout();
+        	
+        }       
+	}
+}

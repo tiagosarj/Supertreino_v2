@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MedidaAdd" >
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textSubescapular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subescapular" />
+            <requestFocus />
+
+            <EditText
+                android:id="@+id/editTextSubescapular"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+       </LinearLayout> 
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:id="@+id/textTripicial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tripicial" />
+
+            <EditText
+                android:id="@+id/editTripicial"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+      </LinearLayout>
+            
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+      
+            <TextView
+                android:id="@+id/textPeitoral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/peitoral" />
+
+            <EditText
+                android:id="@+id/editPeitoral"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" >
+
+                
+            </EditText>
+         </LinearLayout>
+         
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textAxilaMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/axila_media" />
+
+            <EditText
+                android:id="@+id/editAxilaMedia"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" >                
+            </EditText>
+         </LinearLayout>
+         
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textSuprailiaca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/supra_iliaca" />
+
+            <EditText
+                android:id="@+id/editSuprailiaca"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+            </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textAbdominal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abdominal" />
+
+            <EditText
+                android:id="@+id/editAbdominal"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"                
+                android:inputType="number" />
+            </LinearLayout>
+            
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textAnteBraco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ante_braco" />
+
+            <EditText
+                android:id="@+id/editAnteBraco"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/salvar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bt_salvar" />
+
+        </LinearLayout>    
+
+</RelativeLayout>

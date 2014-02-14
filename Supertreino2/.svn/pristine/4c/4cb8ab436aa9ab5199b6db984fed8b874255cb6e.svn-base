@@ -1,0 +1,350 @@
+package br.ufba.matc89.provider;
+
+import android.content.ContentResolver;
+import android.net.Uri;
+import android.provider.BaseColumns;
+
+public final class SuperTreinoContract {
+	/**
+	 * The authority of the supertreino provider.
+	 */
+	public static final String AUTHORITY = "br.ufba.matc89.supertreino";
+	/**
+	 * The content URI for the top-level supertreino authority.
+	 */
+	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
+	/**
+	 * A selection clause for ID based queries.
+	 */
+	public static final String SELECTION_ID_BASED = BaseColumns._ID + " = ? ";
+
+	/**
+	 * Constants for the Atletas table of the supertreino provider.
+	 */
+	public static final class Atletas implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "atletas");
+		/**
+		 * The mime type of a directory of atletas.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_atletas";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_atletas";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_USUARIO = "id_usuario";
+		public static final String GENERO = "genero";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_USUARIO, GENERO};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = ID_USUARIO;
+	}
+
+	/**
+	 * Constants for the Medidas table of the supertreino provider.
+	 */
+	public static final class Medidas implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "medidas");
+		/**
+		 * The mime type of a directory of medidas.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_medidas";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_medidas";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_ATLETA = "id_atleta";
+		public static final String PESO = "peso";
+		public static final String ALTURA = "altura";
+		public static final String CINTURA = "cintura";
+		public static final String QUADRIL = "quadril";
+		public static final String SUBSCAPULAR = "subscapular";
+		public static final String TRIPICIAL = "tripicial";
+		public static final String PEITORAL = "peitoral";
+		public static final String AXILAR_MEDIDA = "axilar_medida";
+		public static final String SUPRA_ILIACA = "supra_iliaca";
+		public static final String ABDOMINAL = "abdominal";
+		public static final String ANTEBRACO = "antebraco";
+		public static final String DATA_AFERICAO = "data_afericao";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_ATLETA, ALTURA, CINTURA, QUADRIL, SUBSCAPULAR, TRIPICIAL, PEITORAL, AXILAR_MEDIDA, SUPRA_ILIACA, ABDOMINAL, ANTEBRACO, DATA_AFERICAO};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = _ID;
+	}
+
+	/**
+	 * Constants for the Dieta table of the supertreino provider.
+	 */
+	public static final class Dietas implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "dietas");
+		/**
+		 * The mime type of a directory of dietas.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_dietas";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_dietas";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_ATLETA = "id_atleta";
+		public static final String NOME = "nome";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_ATLETA, NOME};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+	
+	/**
+	 * Constants for the Alimentos table of the supertreino provider.
+	 */
+	public static final class Alimentos implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "alimentos");
+		/**
+		 * The mime type of a directory of alimentos.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_alimentos";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_alimentos";
+		/*
+		 * Colunas
+		 */
+		public static final String NOME = "nome";
+		public static final String FONTE = "fonte";
+		public static final String CARBOIDRATO = "carboidrato";
+		public static final String PROTEINA = "proteina";
+		public static final String GORDURA = "gordura";
+		public static final String CALORIA = "caloria";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, NOME, FONTE, CARBOIDRATO, PROTEINA, GORDURA, CALORIA};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+
+	/**
+	 * Constants for the Refeicao table of the supertreino provider.
+	 */
+	public static final class Refeicoes implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "refeicoes");
+		/**
+		 * The mime type of a directory of refeicoes.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_refeicoes";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_refeicoes";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_DIETA = "id_dieta";
+		public static final String ID_ALIMENTO = "id_alimento";
+		public static final String NOME = "nome";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_DIETA, ID_ALIMENTO, NOME};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+	
+	/**
+	 * Constants for the Refeicao_Alimento table of the supertreino provider.
+	 */
+	public static final class RefeicaoAlimentos implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "refeicao_alimentos");
+		/**
+		 * The mime type of a directory of refeicao_alimentos.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_refeicao_alimentos";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_refeicao_alimentos";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_REFEICAO = "id_refeicao";
+		public static final String ID_ALIMENTO = "id_alimento";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_REFEICAO, ID_ALIMENTO};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = ID_REFEICAO;
+	}
+
+	/**
+	 * Constants for the Semana table of the supertreino provider.
+	 */
+	public static final class Semanas implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "semanas");
+		/**
+		 * The mime type of a directory of semanas.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_semanas";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_semanas";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_CICLO = "id_ciclo";
+		public static final String NUMERO = "numero";
+		public static final String METODOLOGIA = "metodologia";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_CICLO, NUMERO, METODOLOGIA};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = _ID;
+	}
+
+	/**
+	 * Constants for the Dia table of the supertreino provider.
+	 */
+	public static final class Dias implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "dias");
+		/**
+		 * The mime type of a directory of dias.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_dias";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_dias";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_SEMANA = "id_semana";
+		public static final String DIA_CALENDARIO = "dia_calendario";
+		public static final String NOME = "nome";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_SEMANA, DIA_CALENDARIO, NOME};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+
+	/**
+	 * Constants for the Treino table of the supertreino provider.
+	 */
+	public static final class Treinos implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "treinos");
+		/**
+		 * The mime type of a directory of treinos.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_treinos";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_treinos";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_DIA = "id_dia";
+		public static final String NOME = "nome";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_DIA, NOME};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+
+	/**
+	 * Constants for the Exercicio table of the supertreino provider.
+	 */
+	public static final class Exercicios implements BaseColumns {
+		/**
+		 * The content URI for this table. 
+		 */
+		public static final Uri CONTENT_URI =  Uri.withAppendedPath(SuperTreinoContract.CONTENT_URI, "exercicios");
+		/**
+		 * The mime type of a directory of exercicios.
+		 */
+		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/br.ufba.matc89.supertreino_exercicios";
+		/**
+		 * The mime type of a single item.
+		 */
+		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/br.ufba.matc89.supertreino_exercicios";
+		/*
+		 * Colunas
+		 */
+		public static final String ID_TREINO = "id_treino";
+		public static final String NOME = "nome";
+		public static final String QNT_SERIE = "qnt_serie";
+		public static final String QNT_REPETICAO = "qnt_repeticao";
+		/**
+		 * A projection of all columns in the items table.
+		 */
+		public static final String[] PROJECTION_ALL = {_ID, ID_TREINO, NOME, QNT_SERIE, QNT_REPETICAO};
+		/**
+		 * The default sort order for queries containing NOME fields.
+		 */
+		public static final String SORT_ORDER_DEFAULT = NOME;
+	}
+}

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Super Treino</string>
+	<string name="action_settings">Configuração</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="title_activity_atleta_add">Dados do atleta</string>
+	<string name="nome_atleta">Nome</string>
+	<string name="login_atleta">Login</string>
+	<string name="senha_atleta">Senha</string>
+	<string name="nascimento_atleta">Nascimento</string>
+	<string name="genero_atleta">Gênero</string>
+	<string name="bt_salvar">Salvar</string>
+	<string name="title_activity_dietas">Dietas</string>
+	<string name="title_activity_relatorio">Relatorio</string>
+	<string name="radBtFeminino">Feminino</string>
+	<string name="radBtMasculino">Masculino</string>
+	<string name="txtEmailAtleta">Email</string>
+	<string name="txtAltura"></string>
+	<string name="inputAltura"></string>
+	<string name="btHome"></string>
+	<string name="title_activity_dieta_add">Adicionar Dieta</string>
+	<string name="lbAddDieta">Adicionar Dieta</string>
+	<string name="lbRefeicao">Refeição</string>
+	<string name="linha"></string>
+	
+	<string name="lbAlimentos">Alimentos</string>
+	<string name="lbAlimento">Alimento</string>
+	<string name="title_activity_add_alimento">Adicionar Alimento</string>
+	<string name="title_activity_edit_alimento">Editar Alimento</string>
+	<string name="editar">Editar</string>
+	<string name="excluir">Excluir</string>
+	
+	<string name="title_nome">Nome</string>
+	<string name="title_fonte">Fonte</string>
+	<string name="title_carboidrato">Carboidrato</string>
+	<string name="title_proteina">Proteína</string>
+	<string name="title_gordura">Gordura</string>
+	<string name="title_caloria">Caloria</string>
+	<string name="title_gramas">grs</string>
+	
+	<string name="salvar">Salvar</string>
+	<string name="adicionar">Adicionar</string>
+	
+	<string name="title_activity_home">HomeActivity</string>
+	<string name="title_activity_alimentacao">AlimentacaoActivity</string>
+	<string name="bt_alimentacao">Alimentação</string>
+	<string name="bt_dietas">Dietas</string>
+	<string name="bt_alimentos">Alimentos</string>
+	<string name="tela_atleta">Atleta</string>
+	<string name="tela_alimentacao">Alimentação</string>
+	<string name="tela_treino">Treino</string>
+	<string name="tela_relatorio">Relatório</string>
+	<string name="tela_noticias">Notícias</string>
+	<string name="title_relatorio">Relatório de Avaliação</string>
+	<string name="title_dados_relatorio">Dados</string>
+	<string name="title_activity_tela_principal">TelaPrincipalActivity</string>
+	<string name="string_imc">IMC</string>
+	<string name="string_situacao">Situação</string>
+	<string name="string_risco">Risco</string>
+	<string name="string_gordura">% de Gordura</string>
+	<string name="title_activity_tela_treino">TreinoActivity</string>
+	<string name="title_activity_tela_treino_microciclo">TreinoMicrocicloActivity</string>
+	<string name="title_activity_tela_lista_treino">ListaTreinosActivity</string>
+	<string name="title_activity_tela_exercicios">ExercicioslActivity</string>
+	<string name="exercicios">Exercícios</string>
+	<string name="tempo">Tempo</string>
+	<string name="add_ex">Adicionar Exercício</string>
+	<string name="repeticao_ex">Repetição</string>
+	<string name="serie_ex">Serie</string>
+	<string name="addtreino">Adicionar Treino</string>
+	<string name="bt_treinos">Treinos</string>
+	<string name="title_activity_treino_microciclo">TreinoMicrocicloActivity</string>
+	<string name="title_activity_treino">TreinoActivity</string>
+	<string name="title_activity_lista_treinos">ListaTreinosActivity</string>
+	<string name="title_activity_exercicio">ExercicioActivity</string>
+	<string name="lbQnt">Quantidade</string>
+	<string name="txtQnt">g/unid</string>
+	<string name="btAdd"></string>
+	<string name="tbColName">Nome</string>
+	<string name="lbFonte">Fonte</string>
+	<string name="lbCHO">CHO</string>
+	<string name="lbColFonte">Fonte</string>
+	<string name="lbColCHO">CHO</string>
+	<string name="lbColNome">Nome</string>
+	<string name="lbColPTN">"   PTN"</string>
+	<string name="title_activity_medidas">MedidasActivity</string>
+	<string name="title_activity_medida_add">MedidaAdd</string>
+	
+	<string name="data_afericao">Data de Aferição</string>
+	<string name="peso">Peso</string>
+	<string name="altura">Altura</string>
+	<string name="cintura">Cintura</string>
+	<string name="quadril">Quadril</string>
+	<string name="subescapular">Subescapular</string>
+	<string name="tripicial">Tripicial</string>
+	<string name="peitoral" >Peitoral</string>
+	<string name="axilar_media">Axilar Média</string>
+	<string name="supra_iliaca">Supra Iliaca</string>
+	<string name="abdominal">Abdominal</string>
+	<string name="antebraco">Antebraço</string>
+	<string name="medida">Medida</string>
+	
+	<string name="err_campo_obrigatorio">Campo obrigatório.</string>
+	<string name="txtCb">Selecione um alimento</string>  
+	<string name="leitor_noticias">Dieta e Saúde</string>
+	<string name="ler_noticias">Ler Notícias</string>
+	<string name="title_activity_noticia">NoticiaActivity</string>
+	<string name="title_activity_nav_drawer">Super Treino</string>
+	
+	<!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Relatório</item>
+        <item >Atleta</item>
+        <item >Dieta</item>
+        <item >Alimentos</item>
+        <item >Medidas</item>
+        <item >Treinos</item>
+        <item >Exercícios</item>
+        <item >Notícias</item>
+    </string-array>
+     
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+        <item>@drawable/ic_menu_home</item>
+    </array>
+     
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+</resources>

@@ -1,0 +1,140 @@
+package br.ufba.matc89;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.database.Cursor;
+
+import br.ufba.matc89.dao.AlimentoDAO;
+import br.ufba.matc89.adapter.AlimentoCursorAdapter;
+
+public class AlimentoFragmentOld extends Fragment {
+
+	Button addAlimentoButton;
+	AlimentoDAO dbAlimento;
+	
+	private AlimentoCursorAdapter alimentoAdapter;
+	private ListView listView;
+	
+	private MyTransactionListener transactionListener;
+
+	@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+		View rootView = inflater.inflate(R.layout.fragment_alimento, container, false);
+        return rootView;
+    }
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+		super.onActivityCreated(savedInstanceState);
+		dbAlimento = new AlimentoDAO(getActivity());
+
+		listView = (ListView) getView().findViewById(R.id.listViewAlimento);
+		listView.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+				getActivity().openContextMenu(view);
+			}
+		});
+		registerForContextMenu(listView);
+		
+		alimentoAdapter = new AlimentoCursorAdapter(getActivity(), dbAlimento.getAll());
+        listView.setAdapter(alimentoAdapter);
+	}
+
+//	@Override
+//	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+//		super.onCreateContextMenu(menu, v, menuInfo);
+//		MenuInflater inflater = getMenuInflater();
+//		inflater.inflate(R.menu.alimento, menu);
+//	}
+	
+//	@Override
+//	public boolean onContextItemSelected(MenuItem item){
+//		AdapterView.AdapterContextMenuInfo info =
+//		          (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+//		int itemId = item.getItemId();
+//		if (itemId == R.id.editar) {
+//			Intent changeActivity = new Intent( AlimentoFragment.this, AlimentoAddEditActivity.class);
+//			changeActivity.putExtra("br.ufba.matc89.id_alimento", info.id);
+//			startActivityForResult(changeActivity, 1);
+//			return true;
+//		} else if (itemId == R.id.excluir) {
+//			dbAlimento.delete_byID(info.id);
+//			//Toast.makeText(AlimentoActivity.this, "Item excluído", Toast.LENGTH_LONG).show();
+//			alimentoAdapter.changeCursor(dbAlimento.getAllData());
+//			return true;
+//		} else {
+//			return super.onContextItemSelected(item);
+//		}
+//	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	   inflater.inflate(R.menu.alimento, menu);
+	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+		if (itemId == R.id.adicionar) {
+			Fragment fragment = new AlimentoAddEditFragment();
+			transactionListener.showFragment(R.id.frame_container, fragment, null, this, true, false);
+			return true;
+		} else {
+			Log.e("AlimentoFragment", "Error in creating fragment");
+			return super.onOptionsItemSelected(item);
+		}
+    }
+	
+	@Override
+	public void onAttach(Activity activity) {
+	    super.onAttach(activity);
+	    if (activity instanceof MyTransactionListener) {
+	    	transactionListener = (MyTransactionListener) activity;
+	    } else {
+	      throw new ClassCastException(activity.toString()
+	          + " must implemenet MyListFragment.OnItemSelectedListener");
+	    }
+	}
+
+	@Override
+	public void onDetach() {
+	    super.onDetach();
+	    transactionListener = null;
+	}
+	
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		if(!hidden){
+			loadList();
+		}
+	}
+	
+	protected void loadList(){
+		Cursor cursor = dbAlimento.getAll();
+		alimentoAdapter = new AlimentoCursorAdapter(getActivity(), cursor);
+		cursor.close();
+	}
+}

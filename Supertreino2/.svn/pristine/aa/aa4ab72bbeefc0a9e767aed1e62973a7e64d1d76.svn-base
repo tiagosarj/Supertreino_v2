@@ -1,0 +1,7 @@
+package br.ufba.matc89.provider;
+
+interface DbSchema {
+	String DB_NAME = "supertreino";
+	
+	String TBL_ALIMENTOS = "alimento";
+}

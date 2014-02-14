@@ -1,0 +1,99 @@
+package br.ufba.matc89;
+
+import br.ufba.matc89.model.Exercicio;
+import br.ufba.matc89.util.NumberUtil;
+import br.ufba.matc89.dao.ExercicioDAO;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+
+public class ExercicioAddEditFragment extends Fragment {
+
+	protected EditText exercicio_nome;
+	protected EditText exercicio_serie;
+	protected EditText exercicio_repeticao;
+	protected Button salvarButton;
+	protected Exercicio exercicio = new Exercicio();
+	ExercicioDAO dbExercicio;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		View rootView = inflater.inflate(R.layout.fragment_exercicio_add_edit, container, false);
+		
+		return rootView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+		super.onActivityCreated(savedInstanceState);
+		dbExercicio = new ExercicioDAO(getActivity());
+		
+		exercicio_nome = (EditText)getView().findViewById(R.id.exercicio_nome);
+		exercicio_serie = (EditText)getView().findViewById(R.id.exercicio_serie);
+		exercicio_repeticao = (EditText)getView().findViewById(R.id.exercicio_repeticao);
+		
+        Bundle bundle=getArguments(); 
+        if(bundle != null){
+	        long id_exercicio = bundle.getLong("id_exercicio",-1);
+			if (id_exercicio != -1) {
+				exercicio = dbExercicio.getById(id_exercicio);
+				
+				exercicio_nome.setText(exercicio.getNome());
+				exercicio_serie.setText(exercicio.getSerie().toString());
+				exercicio_repeticao.setText(exercicio.getRepeticao().toString());
+			}
+        }
+		
+		salvarButton = (Button) getView().findViewById(R.id.salvar);
+		salvarButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				attemptSave();
+			}
+		});
+	}
+	
+	public void attemptSave(){
+		boolean cancel = false;
+		View focusView = null;
+		
+		if (TextUtils.isEmpty(exercicio_nome.getText().toString())) {
+			exercicio_nome.setError(getString(R.string.error_field_required));
+			focusView = exercicio_nome;
+			cancel = true;
+		}
+		
+		if (TextUtils.isEmpty(exercicio_serie.getText().toString())) {
+			exercicio_serie.setError(getString(R.string.error_field_required));
+			focusView = exercicio_serie;
+			cancel = true;
+		}
+		
+		if (TextUtils.isEmpty(exercicio_repeticao.getText().toString())) {
+			exercicio_repeticao.setError(getString(R.string.error_field_required));
+			focusView = exercicio_repeticao;
+			cancel = true;
+		}
+		
+		if(cancel){
+			focusView.requestFocus();
+		} else {
+			exercicio.setNome(exercicio_nome.getText().toString());
+			exercicio.setSerie(Double.valueOf(exercicio_serie.getText().toString()));
+			exercicio.setRepeticao(Double.valueOf(exercicio_repeticao.getText().toString()));
+			
+			dbExercicio.save(exercicio);
+			//TODO usar o controller para salvar exercicio
+			
+			getActivity().getSupportFragmentManager().popBackStack();
+		}
+	}
+}

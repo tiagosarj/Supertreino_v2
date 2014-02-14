@@ -1,0 +1,98 @@
+package br.ufba.matc89;
+
+import br.ufba.matc89.model.Alimento;
+import br.ufba.matc89.util.NumberUtil;
+import br.ufba.matc89.dao.AlimentoDAO;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+
+public class AlimentoAddEditFragment extends Fragment {
+
+	protected EditText alimento_nome;
+	protected EditText alimento_fonte;
+	protected EditText alimento_carboidrato;
+	protected EditText alimento_proteina;
+	protected EditText alimento_gordura;
+	protected EditText alimento_caloria;
+	protected Button salvarButton;
+	protected Alimento alimento = new Alimento();
+	AlimentoDAO dbAlimento;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		View rootView = inflater.inflate(R.layout.fragment_alimento_add_edit, container, false);
+		
+		return rootView;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+		super.onActivityCreated(savedInstanceState);
+		dbAlimento = new AlimentoDAO(getActivity());
+		
+		alimento_nome = (EditText)getView().findViewById(R.id.alimento_nome);
+		alimento_fonte = (EditText)getView().findViewById(R.id.alimento_fonte);
+		alimento_carboidrato = (EditText)getView().findViewById(R.id.alimento_carboidrato);
+		alimento_proteina = (EditText)getView().findViewById(R.id.alimento_proteina);
+		alimento_gordura = (EditText)getView().findViewById(R.id.alimento_gordura);
+		alimento_caloria = (EditText)getView().findViewById(R.id.alimento_caloria);
+		
+        Bundle bundle=getArguments(); 
+        if(bundle != null){
+	        long id_alimento = bundle.getLong("id_alimento",1L);
+			if (id_alimento != 1L) {
+				alimento = dbAlimento.getById(id_alimento);
+				
+				alimento_nome.setText(alimento.getNome());
+				alimento_fonte.setText(alimento.getFonte());
+				alimento_carboidrato.setText(Double.toString(alimento.getCarboidrato()));
+				alimento_proteina.setText(Double.toString(alimento.getProteina()));
+				alimento_gordura.setText(Double.toString(alimento.getGordura()));
+				alimento_caloria.setText(Double.toString(alimento.getCaloria()));
+			}
+        }
+		
+		salvarButton = (Button) getView().findViewById(R.id.salvar);
+		salvarButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				attemptSave();
+			}
+		});
+	}
+	
+	public void attemptSave(){
+		boolean cancel = false;
+		View focusView = null;
+		
+		if (TextUtils.isEmpty(alimento_nome.getText().toString())) {
+			alimento_nome.setError(getString(R.string.error_field_required));
+			focusView = alimento_nome;
+			cancel = true;
+		}
+		
+		if(cancel){
+			focusView.requestFocus();
+		} else {
+			alimento.setNome(alimento_nome.getText().toString());
+			alimento.setFonte(alimento_fonte.getText().toString());
+			alimento.setCarboidrato(NumberUtil.parseDouble(alimento_carboidrato.getText().toString()));
+			alimento.setProteina(NumberUtil.parseDouble(alimento_proteina.getText().toString()));
+			alimento.setGordura(NumberUtil.parseDouble(alimento_gordura.getText().toString()));
+			alimento.setCaloria(NumberUtil.parseDouble(alimento_caloria.getText().toString()));
+			
+			dbAlimento.save(alimento);
+			//TODO usar o controller para salvar alimento
+			
+			getActivity().getSupportFragmentManager().popBackStack();
+		}
+	}
+}
